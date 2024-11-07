@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  # Здесь будут описаны сервисы (контейнеры), которые нужно запустить.
+  # Например:
+  # web:
+  #   image: nginx:latest
+  #   networks:
+  #     - my-netology-network
+
+volumes:
+  # Здесь можно определить тома для хранения данных
+  # Например:
+  # db-data:
+
+networks:
+  fumelli-pa-my-netology-hw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16

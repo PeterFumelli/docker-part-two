@@ -66,8 +66,20 @@ networks:
 version: '3.8'
 
 services:
+  fumelli-pa-netology-prometheus:
+    image: prom/prometheus:latest
+    container_name: fumelli-pa-netology-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - prometheus_data:/prometheus
+      - ./sdvps-homeworks/lecture_demos/6-04/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - fumelli-pa-my-netology-hw
 
 volumes:
+  prometheus_data:
+    driver: local
 
 networks:
   fumelli-pa-my-netology-hw:

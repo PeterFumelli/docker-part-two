@@ -51,7 +51,7 @@ services:
 volumes:
 
 networks:
-  fumelli-pa-my-netology-hw:
+   fumelli-pa-my-netology-hw:
     driver: bridge
     ipam:
       config:
@@ -76,14 +76,14 @@ services:
       - ./prometheus:/etc/prometheus
       - prometheus-data:/prometheus
     networks:
-      - monitoring-stack
+      - fumelli-pa-my-netology-hw
     restart: always
 
 volumes:
   prometheus-data:
 
 networks:
-  fumelli-pa-my-netology-hw:
+   fumelli-pa-my-netology-hw:
     driver: bridge
     ipam:
       config:
@@ -107,7 +107,7 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
     networks:
-      - monitoring-stack
+      - fumelli-pa-my-netology-hw
     restart: always
 
   pushgateway:
@@ -116,7 +116,7 @@ services:
     ports:
       - 9091:9091
     networks:
-      - monitoring-stack
+      - fumelli-pa-my-netology-hw
     depends_on:
       - prometheus
     restart: unless-stopped
@@ -125,7 +125,7 @@ volumes:
   prometheus-data:
 
 networks:
-  monitoring-stack:
+   fumelli-pa-my-netology-hw:
     driver: bridge
     ipam:
       config:

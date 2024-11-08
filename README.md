@@ -93,22 +93,40 @@ networks:
 
 ### Задание 4
 
-`Приведите ответ в свободной форме........`
+```yaml
+version: '3'
 
-1. `Заполните здесь этапы выполнения, если требуется ....`
-2. `Заполните здесь этапы выполнения, если требуется ....`
-3. `Заполните здесь этапы выполнения, если требуется ....`
-4. `Заполните здесь этапы выполнения, если требуется ....`
-5. `Заполните здесь этапы выполнения, если требуется ....`
-6.
+services:
+  prometheus:
+    image: prom/prometheus:v2.47.2
+    container_name: fumelli-pa-netology-prometheus
+    command: --web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    networks:
+      - monitoring-stack
+    restart: always
 
+  pushgateway:
+    image: prom/pushgateway:latest
+    container_name: fumelli-pa-netology-pushgateway
+    ports:
+      - "9091:9091"  # Внешний доступ к порту 9091
+    networks:
+      - monitoring-stack
+    restart: always
+
+volumes:
+  prometheus-data:
+
+networks:
+  monitoring-stack:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
 ```
-Поле для вставки кода...
-....
-....
-....
-....
-```
-
-`При необходимости прикрепитe сюда скриншоты
-![Название скриншота](ссылка на скриншот)`

@@ -1,23 +1,24 @@
 version: '3'
 
 services:
-  fumelli-pa-netology-prometheus:
-    image: prom/prometheus:latest
+  prometheus:
+    image: prom/prometheus:v2.47.2
     container_name: fumelli-pa-netology-prometheus
+    command: --web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
     volumes:
-      - prometheus_data:/prometheus
-      - ./sdvps-homeworks/lecture_demos/6-04/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus:/etc/prometheus
+      - prometheus-data:/prometheus
     networks:
-      - fumelli-pa-my-netology-hw
+      - monitoring-stack
+    restart: always
 
 volumes:
-  prometheus_data:
-    driver: local
+  prometheus-data:
 
 networks:
-  fumelli-pa-my-netology-hw:
+  monitoring-stack:
     driver: bridge
     ipam:
       config:

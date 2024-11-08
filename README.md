@@ -114,16 +114,18 @@ services:
     image: prom/pushgateway:latest
     container_name: fumelli-pa-netology-pushgateway
     ports:
-      - "9091:9091"  # Внешний доступ к порту 9091
+      - 9091:9091
     networks:
       - monitoring-stack
-    restart: always
+    depends_on:
+      - prometheus
+    restart: unless-stopped
 
 volumes:
   prometheus-data:
 
 networks:
-  fumelli-pa-my-netology-hw:
+  monitoring-stack:
     driver: bridge
     ipam:
       config:

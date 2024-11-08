@@ -83,7 +83,7 @@ volumes:
   prometheus-data:
 
 networks:
-  monitoring-stack:
+  fumelli-pa-my-netology-hw:
     driver: bridge
     ipam:
       config:
@@ -123,7 +123,7 @@ volumes:
   prometheus-data:
 
 networks:
-  monitoring-stack:
+  fumelli-pa-my-netology-hw:
     driver: bridge
     ipam:
       config:

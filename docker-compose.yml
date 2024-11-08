@@ -6,7 +6,7 @@ services:
     container_name: fumelli-pa-netology-prometheus
     command: --web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yml
     ports:
-      - "9090:9090"
+      - 9090:9090
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus

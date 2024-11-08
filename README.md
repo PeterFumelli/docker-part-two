@@ -63,7 +63,7 @@ networks:
 ### Задание 3
 
 ```yaml
-version: '3'
+vversion: '3'
 
 services:
   prometheus:

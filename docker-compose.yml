@@ -11,7 +11,7 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
     networks:
-      - mfumelli-pa-my-netology-hw
+      - monitoring-stack
     restart: always
 
   pushgateway:
@@ -20,7 +20,7 @@ services:
     ports:
       - 9091:9091
     networks:
-      - fumelli-pa-my-netology-hw
+      - monitoring-stack
     depends_on:
       - prometheus
     restart: unless-stopped

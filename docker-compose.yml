@@ -1,17 +1,20 @@
 version: '3.8'
 
 services:
-  # Здесь будут описаны сервисы (контейнеры), которые нужно запустить.
-  # Например:
-  # web:
-  #   image: nginx:latest
-  #   networks:
-  #     - my-netology-network
+  fumelli-pa-netology-prometheus:
+    image: prom/prometheus:latest
+    container_name: fumelli-pa-netology-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - prometheus_data:/prometheus
+      - ./sdvps-homeworks/lecture_demos/6-04/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - fumelli-pa-my-netology-hw
 
 volumes:
-  # Здесь можно определить тома для хранения данных
-  # Например:
-  # db-data:
+  prometheus_data:
+    driver: local
 
 networks:
   fumelli-pa-my-netology-hw:
@@ -19,3 +22,4 @@ networks:
     ipam:
       config:
         - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1

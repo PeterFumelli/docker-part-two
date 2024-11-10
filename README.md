@@ -108,11 +108,15 @@ networks:
 
 ### Задание 7
 
-https://github.com/PeterFumelli/docker-part-two/blob/main/img/grafana.png
+<https://github.com/PeterFumelli/docker-part-two/blob/main/img/grafana.png>
 
-https://github.com/PeterFumelli/docker-part-two/blob/main/img/docker_compose_ps.png
+<https://github.com/PeterFumelli/docker-part-two/blob/main/img/docker_compose_ps.png>
 
 ### Задание 8
 
-https://github.com/PeterFumelli/docker-part-two/blob/main/img/%20docker_rm.png
+<https://github.com/PeterFumelli/docker-part-two/blob/main/img/%20docker_rm.png>
+
+### Задание 9
+
+<https://github.com/PeterFumelli/docker-part-two/blob/main/img/alertmanager.png>
 

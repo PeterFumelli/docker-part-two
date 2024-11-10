@@ -106,4 +106,9 @@ networks:
           gateway: 10.5.0.1
 ```
 
-### Задание 5
+### Задание 7
+
+https://github.com/PeterFumelli/docker-part-two/blob/main/img/grafana.png
+
+
+

@@ -14,6 +14,7 @@ services:
       - fumelli-pa-my-netology-hw
     restart: always
 
+
   pushgateway:
     image: prom/pushgateway:v1.6.2
     container_name: fumelli-pa-netology-pushgateway
@@ -23,17 +24,12 @@ services:
       - fumelli-pa-my-netology-hw
     depends_on:
       - prometheus
-    restart: unless-stopped
+    restart: always
 
-
-
-volumes:
-  prometheus-data:
-
-networks:
-   fumelli-pa-my-netology-hw:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 10.5.0.0/16
-          gateway: 10.5.0.1
+  grafana:
+    image: grafana/grafana
+    container_name: fumelli-pa-netology-grafana
+    environment:
+      - GF_PATHS_CONFIG=/etc/grafana/custom.ini
+    ports:
+      - 80:300

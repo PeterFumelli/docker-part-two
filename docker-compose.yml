@@ -32,4 +32,25 @@ services:
     environment:
       - GF_PATHS_CONFIG=/etc/grafana/custom.ini
     ports:
-      - 80:300
+      - 80:3000
+    volumes:
+      - ./grafana:/etc/grafana
+      - grafana-data:/var/lib/grafana
+    networks:
+      - fumelli-pa-my-netology-hw
+    depends_on:
+      - prometheus
+    restart: always
+
+volumes:
+  prometheus-data:
+  grafana-data:
+
+
+networks:
+   fumelli-pa-my-netology-hw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1

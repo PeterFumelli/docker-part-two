@@ -3,3 +3,12 @@ scrape_configs:
     honor_labels: true
     static_configs:
       - targets: ['pushgateway:9091']
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - 'fumelli-pa-netology-alertmanager:9093'
+
+rule_files:
+  - alerts.yml

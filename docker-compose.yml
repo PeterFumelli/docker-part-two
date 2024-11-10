@@ -9,11 +9,13 @@ services:
       - 9090:9090
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alerts.yml:/etc/prometheus/alerts.yml  # Монтируем alerts.yml
       - prometheus-data:/prometheus
     networks:
       - fumelli-pa-my-netology-hw
     restart: always
-
+    depends_on:
+      - pushgateway
 
   pushgateway:
     image: prom/pushgateway:v1.6.2
@@ -22,8 +24,6 @@ services:
       - 9091:9091
     networks:
       - fumelli-pa-my-netology-hw
-    depends_on:
-      - prometheus
     restart: always
 
   grafana:
@@ -40,10 +40,28 @@ services:
       - fumelli-pa-my-netology-hw
     depends_on:
       - prometheus
+      - alertmanager
     restart: always
+
+  alertmanager:
+    image: prom/alertmanager:v0.26.0
+    container_name: fumelli-pa-netology-alertmanager
+    command: --config.file=/etc/alertmanager/alertmanager.yml
+    ports:
+      - 9093:9093
+    volumes:
+      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml --cluster.listen-address=""
+      - alertmanager-data:/data
+    networks:
+      - fumelli-pa-my-netology-hw
+    depends_on:
+      - prometheus
+    restart: always
+
 
 volumes:
   prometheus-data:
+  alertmanager-data:
   grafana-data:
 
 
